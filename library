@@ -1,0 +1,198 @@
+import random
+available_books=[]
+no_of_books=0
+transaction_window=[]
+delayed_books=[]
+member_list=[]
+rented_books=[]
+count_down_days=0
+rented_days=[]
+password='password'
+interface=int(input('\n1.Librarian\n2. User'))
+if(interface==1):
+    enter_password= print('enter the password to login:')
+    if(enter_password==password):
+        print('successfully loged in')
+        print('welcome!,you can add and edit the catalogue of books')
+        l='y'
+        while l=='y' or l=='Y':
+           task1=int(input('\n1.Add Books\n2.Delete book\n3.Track transactions and renewals \n4.Track members\n5.Book overview'))
+           if(task1==1):
+             book=[]
+             new_book=input('enter the book name:')
+             new_book=book.append()
+             sl_id=int(input('enter the sl id of the book'))
+             sl_id=book.append()
+             author=input('enter the name of the author')
+             author=book.append()
+             publisher=input('enter the name of the publisher')
+             publisher=book.append()
+             book=available_books.append()
+             no_of_books+=1
+             
+           elif(task1==2):
+             delete_book=input('enter the name of the book to be removed from available list:')
+             for i in range(0,len(available_books)):
+                 if delete_book==available_books[i][0]:
+                     delete_book=available_books.remove()
+                     no_of_books-=1
+                 else:
+                    print('invalid entry')  
+
+                 
+             
+           elif(task1==3):
+              t='y'
+              while t=='y' or t=='Y':
+                task2=int(input('1.Track transactions\n2.renew book'))
+                if(task2==1):
+                  task3=int(input('\n1.transaction history\n2.delayed books'))
+                  if(task3==1):
+                    print('welcome to transaction window')
+                    for i in transaction_window:
+                        print(i)
+                    
+                  elif(task3==2):
+                    print('Delayed books')
+                    for i in delayed_books:
+                        print(i) 
+                    
+                  else:
+                    print('invalid entry!')
+                elif task2==2:
+                    renew=input('enter the book name:')   
+                    for i in range(0,len(rented_books)):
+                        if renew==rented_books[i][0]:
+                            count_down_days=14
+                            date=int(input('enter todays date DD MM YYYY')).split()
+                            date=rented_days.append()
+                            print(f'due is 14 days from {date}')
+                else:
+                    print('invalid entry')
+                t=input('do you want to continue? (y/n)')            
+                
+                
+           elif(task1==4):
+                print('welcome to members list')
+                for i in member_list:
+                    print(i)
+                
+           elif(task1==5):
+                book_details=input('enter the book name to view the details')
+                for i in range(0,len(available_books)):
+                    if book_details==available_books[i][0]:
+                        print(available_books[i])
+                    else:
+                        print('invalid entry!')
+                
+           else:
+                print('invalid entry!')
+           l=input('do you want to continue? (y/n)')
+elif(interface==2):
+
+    def rent_book():
+        need_book=input('enter name of the book you want to rent:')
+        for i in range(0,len(available_books)):
+            if need_book==available_books[i][0]:
+                print('book available')
+                task5=int(input('\n1.continue\n'))
+                if(task5==1):
+                    print('book rented!!')
+                    print('you should return or renew book in 14 days!!')
+                    print('HAPPY READING...')
+                    count_down_days=14
+                    rent_day=input('enter todays date DD MM YYYY').split()
+                    rent_day=rented_days.append()
+                    need_book=available_books.remove()
+                    no_of_books-=1
+                    need_book=rented_books.append()
+                else:
+                    print('invalid entry!!')
+            
+            else:
+                print('book not available!!')
+            
+    def renew_books():
+        renew=input('enter name of the book you need to renew')
+        for i in range(0,len(rented_books)):
+            if renew==rented_books[i][0]:
+                task6=int(input('\n1.continue\n'))
+                if(task6==1):
+                    print('your book has been renewed')
+                    count_down_days=14
+                
+                else:
+                    print('invalid entry')
+                
+            else:
+                print('invalid entry')
+            
+    
+    def return_date():
+        if rented_days==None:
+            print('no books rented!!')
+            
+        else:
+            print(f'return date of currently rented book is 14 days from {rented_days[0]}')
+            
+    def delete_membership():
+        alert=input('are you sure?')
+        if(alert==yes or alert==YES):
+            id=input('enter your id')
+            flag=0
+            for i in range(0,len(member_list)):
+                if id==member_list[i][0]:
+                    member_list[i]=member_list.remove()
+                    print('deletion successfull!!')
+                else:
+                    print('invalid entry')
+                    
+        else:
+            print('good job!')
+    
+    def view_book_catalogue():
+        book_view=input('enter the book name to view the details:')
+        for i in range(0,len(available_books)):
+            if i==available_books[i][0]:
+                print(f'the book details are:\n{available_books[i]}')
+                return view_book_catalogue()
+            else:
+                print('book not available!!')
+     
+    u='y'
+    print('hey,welcome to library world!')
+    task4==int(input('\n1.login\n2.new member'))
+    if(task4==1):
+        userid=int(input('serial id'))
+        for i in range(0,len(member_list)):
+            if userid==member_list[i][1]:
+                print(f'welcome {member_list[i][0]} !!')
+            
+
+    elif task4==2:
+        member=[]
+        member_id=random.randint(1000,2000)
+        member_id=member.append()
+        user_name=int('enter your name')
+        user_name=member.append()
+        member=member_list.append()
+        print(f'hey {user_name},welcome to library world')
+
+    else:
+        print('invalid entry')
+    while u=='y' or u=='Y':
+        task6=input('enter your choice \n1.rent book\n2.renew book\n3.view return date\n4.delete membership\n5.book view catalogue')
+        if task6==1:
+            rent_book()
+        elif task6==2:
+            renew_book()
+        elif tak6==3:
+            return_date()
+        elif task6==4:
+            delete_membership()
+        elif task6==5:
+            view_book_catalogue()
+        else:
+            print('invalid entry')
+        u=input('do you want to continue? (y/n)')
+    
